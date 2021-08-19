@@ -1,6 +1,6 @@
 namespace BackendDeveloper.Assignment3
 {
-    public class BinaryParser : AbstractParser
+    public class BinaryParser : IParser
     {
         private string fileToRead;
         private BinaryReader binaryReader;
@@ -14,11 +14,11 @@ namespace BackendDeveloper.Assignment3
         {
             binaryReader.Open(fileToRead);
         }
-        public override void ProcessParsing()
+        public override IEnumerable<T> ProcessParsing<T>()
         {
             while (!binaryReader.HasReachedEnd)
             {
-                persons.Add(parser.GetPerson());
+                yield return (T)parser.GetPerson();
             }
         }
         public override void FinishParsing() 
