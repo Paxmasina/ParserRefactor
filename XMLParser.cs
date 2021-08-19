@@ -12,12 +12,12 @@ namespace BackendDeveloper.Assignment3
         {
             fileReader.Open(file);
         }
-        public override void ProcessParsing()
+        public override IEnumerable<T> ProcessParsing<T>()
         {
             Person parsedPerson;
             while ((parsedPerson = fileReader.GetNextPerson()) != null)
             {
-                persons.Add(parsedPerson);
+                yield return (T) parsedPerson;
             }
         }
 

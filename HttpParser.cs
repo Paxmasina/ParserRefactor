@@ -11,12 +11,12 @@ namespace BackendDeveloper.Assignment3
         {
             apiClient.Connect();
         }
-        public override void ProcessParsing()
+        public override IEnumerable<T> ProcessParsing<T>()
         {
             Person parsedPerson;
             while ((parsedPerson = apiClient.GetNextPersonAsync().Result) != null)
             {
-                persons.Add(parsedPerson);
+               yield return (T)parsedPerson;
             }
         }
 

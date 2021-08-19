@@ -1,14 +1,9 @@
 namespace BackendDeveloper.Assignment3
 {
-    abstract class AbstractParser
+    public interface IParser
     {
-        protected List<Person> persons;
-        public AbstractParser()
-        {
-            persons = new PersonList();
-        }
         public abstract void StartParsing();
-        public abstract void ProcessParsing();
+        public abstract IEnumerable<T> ProcessParsing<T>();
         public abstract void FinishParsing();
     }
 }

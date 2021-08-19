@@ -7,11 +7,17 @@ namespace Task1
             ParserFactory parserFactory = new ParserFactory();
             AbstractParser parser = parserFactory.GetParser(sourceType, fileOrEndpoint);
 
-            parser.StartParsing();
-            parser.ProcessParsing();
-            parser.FinishParsing();
-
-            return parser.GetPersons();
+            try{
+                parser.StartParsing();
+                return parser.ProcessParsing<Person>().ToList();            
+            }
+            catch(Exception e){
+                // Log e
+            }
+            finally{
+                parser.FinishParsing();
+            }
+            
         }
     }
 }
